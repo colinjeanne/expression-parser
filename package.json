@@ -23,6 +23,10 @@
   ],
   "author": "Colin Jeanne <colinjeanne@hotmail.com> (http://www.colinjeanne.net)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colinjeanne/expression-parser.git"
+  },
   "devDependencies": {
     "babel": "^5.2.6",
     "browserify": "^10.0.0",
