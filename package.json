@@ -1,0 +1,31 @@
+{
+  "name": "complex-expression-parser",
+  "version": "1.0.0",
+  "description": "Parses and evaluates expressions over the complex numbers",
+  "main": "es5/expression.js",
+  "scripts": {
+    "prepare": "npm run build & npm test & npm run prepare-web",
+    "test": "jasmine",
+    "prepare-web": "browserify ./build/src/expression.js -o ./es5/expression.js",
+    "build-src": "babel ./es6 --out-dir ./build/src",
+    "build-test": "babel ./spec --out-dir ./build/test",
+    "build": "npm run build-src & npm run build-test"
+  },
+  "keywords": [
+    "math",
+    "maths",
+    "mathematics",
+    "complex",
+    "evaluate",
+    "expression",
+    "parse",
+    "parsing"
+  ],
+  "author": "Colin Jeanne <colinjeanne@hotmail.com> (http://www.colinjeanne.net)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^5.2.6",
+    "browserify": "^10.0.0",
+    "jasmine": "^2.3.1"
+  }
+}
