@@ -1,6 +1,6 @@
 {
   "name": "complex-expression-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parses and evaluates expressions over the complex numbers",
   "main": "es5/expression.js",
   "scripts": {
