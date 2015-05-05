@@ -1,5 +1,4 @@
 import Complex from './../src/complex.js';
-import * as ComplexMath from './../src/complex-math.js';
 import Expression from './../src/expression.js';
 
 describe('Expression', () => {
