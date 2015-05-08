@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "npm run build & npm test & npm run prepare-web",
     "test": "jasmine",
-    "prepare-web": "browserify ./build/src/expression.js -o ./es5/expression.js",
+    "prepare-web": "browserify -r ./build/src/expression.js:expression -r ./build/src/complex.js:complex -r ./build/src/complex-math.js:complex-math -o ./es5/expression.js",
     "build-src": "babel ./es6 --out-dir ./build/src",
     "build-test": "babel ./spec --out-dir ./build/test",
     "build": "npm run build-src & npm run build-test"

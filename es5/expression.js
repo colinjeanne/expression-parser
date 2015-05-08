@@ -1,11 +1,11 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"complex-math":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _interopRequireDefault = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 /**
  * @overview Describes an object analogous to the built-in Math object but over
@@ -610,14 +610,14 @@ var atanh = function atanh(u) {
   return divide(subtract(ln(add(1, u)), ln(subtract(1, u))), 2);
 };
 exports.atanh = atanh;
-},{"./complex.js":2}],2:[function(require,module,exports){
+},{"./complex.js":"complex"}],"complex":[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * @overview Describes a complex number
@@ -651,29 +651,26 @@ var _default = (function () {
 
 exports["default"] = _default;
 module.exports = exports["default"];
-},{}],3:[function(require,module,exports){
+},{}],"expression":[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
    value: true
 });
 
-var _interopRequireWildcard = function (obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } };
-
-var _interopRequireDefault = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
-
-var _bind = Function.prototype.bind;
-var _slice = Array.prototype.slice;
-
 var _KnownUnaryFunctions;
-
-var _defineProperty = function (obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); };
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
-var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _defineProperty(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 /**
  * @overview Describes an expression parser and evaluator over the complex
@@ -865,13 +862,8 @@ var ExpressionSyntaxError = (function (_Error) {
       _classCallCheck(this, ExpressionSyntaxError);
 
       if (_Error != null) {
-         var _this = new (_bind.apply(_Error, [null].concat(_slice.call(arguments))))();
-
-         _this.__proto__ = ExpressionSyntaxError.prototype;
-         return _this;
+         _Error.apply(this, arguments);
       }
-
-      return _this;
    }
 
    _inherits(ExpressionSyntaxError, _Error);
@@ -1435,13 +1427,8 @@ var ExpressionEvaluationError = (function (_Error2) {
       _classCallCheck(this, ExpressionEvaluationError);
 
       if (_Error2 != null) {
-         var _this2 = new (_bind.apply(_Error2, [null].concat(_slice.call(arguments))))();
-
-         _this2.__proto__ = ExpressionEvaluationError.prototype;
-         return _this2;
+         _Error2.apply(this, arguments);
       }
-
-      return _this2;
    }
 
    _inherits(ExpressionEvaluationError, _Error2);
@@ -1730,4 +1717,4 @@ module.exports = exports['default'];
 
 // The right token must be plus or minus so verify that the left token is
 // also plus or minus
-},{"./complex-math.js":1,"./complex.js":2}]},{},[3]);
+},{"./complex-math.js":"complex-math","./complex.js":"complex"}]},{},[]);
