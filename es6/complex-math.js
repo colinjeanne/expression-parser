@@ -18,8 +18,9 @@ const toComplex = u => {
       return new Complex(u.valueOf);
    } else if (typeof u === 'number') {
       return new Complex(u);
-   } else if ((u.real && (typeof u.real === 'number')) &&
-      (u.imaginary && (typeof u.imaginary === 'number'))) {
+   } else if ((typeof u === 'object') &&
+      (u.hasOwnProperty('real') && (typeof u.real === 'number')) &&
+      (u.hasOwnProperty('imaginary') && (typeof u.imaginary === 'number'))) {
       return new Complex(u.real, u.imaginary);
    }
 

@@ -29,7 +29,7 @@ var toComplex = function toComplex(u) {
     return new _Complex2['default'](u.valueOf);
   } else if (typeof u === 'number') {
     return new _Complex2['default'](u);
-  } else if (u.real && typeof u.real === 'number' && (u.imaginary && typeof u.imaginary === 'number')) {
+  } else if (typeof u === 'object' && (u.hasOwnProperty('real') && typeof u.real === 'number') && (u.hasOwnProperty('imaginary') && typeof u.imaginary === 'number')) {
     return new _Complex2['default'](u.real, u.imaginary);
   }
 
