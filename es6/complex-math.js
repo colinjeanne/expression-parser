@@ -25,7 +25,7 @@ const toComplex = u => {
    }
 
    throw new TypeError('Expected numeric type');
-}
+};
 
 /**
  * Euler's constant

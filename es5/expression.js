@@ -1,4 +1,10 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"complex-math":[function(require,module,exports){
+/**
+ * @overview Describes an object analogous to the built-in Math object but over
+ * the complex numbers
+ * @author Colin Jeanne <colinjeanne@hotmail.com> (http://www.colinjeanne.net)
+ */
+
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -7,30 +13,25 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-/**
- * @overview Describes an object analogous to the built-in Math object but over
- * the complex numbers
- * @author Colin Jeanne <colinjeanne@hotmail.com> (http://www.colinjeanne.net)
- */
-
-var _Complex = require('./complex.js');
-
-var _Complex2 = _interopRequireDefault(_Complex);
+var _complexJs = require('./complex.js');
 
 /**
  * A common method to convert between various number-like objects to {Complex}
  * @param  {*} u     An object to convert to a {Complex}
  * @return {Complex}
  */
+
+var _complexJs2 = _interopRequireDefault(_complexJs);
+
 var toComplex = function toComplex(u) {
-  if (u instanceof _Complex2['default']) {
+  if (u instanceof _complexJs2['default']) {
     return u;
   } else if (u instanceof Number) {
-    return new _Complex2['default'](u.valueOf);
+    return new _complexJs2['default'](u.valueOf);
   } else if (typeof u === 'number') {
-    return new _Complex2['default'](u);
+    return new _complexJs2['default'](u);
   } else if (typeof u === 'object' && (u.hasOwnProperty('real') && typeof u.real === 'number') && (u.hasOwnProperty('imaginary') && typeof u.imaginary === 'number')) {
-    return new _Complex2['default'](u.real, u.imaginary);
+    return new _complexJs2['default'](u.real, u.imaginary);
   }
 
   throw new TypeError('Expected numeric type');
@@ -40,211 +41,211 @@ var toComplex = function toComplex(u) {
  * Euler's constant
  * @type {Complex}
  */
-var E = new _Complex2['default'](Math.E);
+var E = new _complexJs2['default'](Math.E);
 
-exports.E = E;
 /**
  * The imaginary unit
  * @type {Complex}
  */
-var I = new _Complex2['default'](0, 1);
+exports.E = E;
+var I = new _complexJs2['default'](0, 1);
 
-exports.I = I;
 /**
  * Natural logarithm of 10
  * @type {Complex}
  */
-var LN10 = new _Complex2['default'](Math.LN10);
+exports.I = I;
+var LN10 = new _complexJs2['default'](Math.LN10);
 
-exports.LN10 = LN10;
 /**
  * Natural logarithm of 2
  * @type {Complex}
  */
-var LN2 = new _Complex2['default'](Math.LN2);
+exports.LN10 = LN10;
+var LN2 = new _complexJs2['default'](Math.LN2);
 
-exports.LN2 = LN2;
 /**
  * Base 2 logarithm of E
  * @type {Complex}
  */
-var LOG2E = new _Complex2['default'](Math.LOG2E);
+exports.LN2 = LN2;
+var LOG2E = new _complexJs2['default'](Math.LOG2E);
 
-exports.LOG2E = LOG2E;
 /**
  * Base 10 logarithm of E
  * @type {Complex}
  */
-var LOG10E = new _Complex2['default'](Math.LOG10E);
+exports.LOG2E = LOG2E;
+var LOG10E = new _complexJs2['default'](Math.LOG10E);
 
-exports.LOG10E = LOG10E;
 /**
  * Ratio of the circumference of a circle to its diameter
  * @type {Complex}
  */
-var PI = new _Complex2['default'](Math.PI);
+exports.LOG10E = LOG10E;
+var PI = new _complexJs2['default'](Math.PI);
 
-exports.PI = PI;
 /**
  * Square root of 1/2
  * @type {Complex}
  */
-var SQRT1_2 = new _Complex2['default'](Math.SQRT1_2);
+exports.PI = PI;
+var SQRT1_2 = new _complexJs2['default'](Math.SQRT1_2);
 
-exports.SQRT1_2 = SQRT1_2;
 /**
  * Square root of 2
  * @type {Complex}
  */
-var SQRT2 = new _Complex2['default'](Math.SQRT2);
+exports.SQRT1_2 = SQRT1_2;
+var SQRT2 = new _complexJs2['default'](Math.SQRT2);
 
-exports.SQRT2 = SQRT2;
 /**
  * The real part of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The real part of the number
  */
+exports.SQRT2 = SQRT2;
 var real = function real(u) {
-  return new _Complex2['default'](toComplex(u).real);
+  return new _complexJs2['default'](toComplex(u).real);
 };
 
-exports.real = real;
 /**
  * The imaginary part of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The imaginary part of the number
  */
+exports.real = real;
 var imaginary = function imaginary(u) {
-  return new _Complex2['default'](toComplex(u).imaginary);
+  return new _complexJs2['default'](toComplex(u).imaginary);
 };
 
-exports.imaginary = imaginary;
 /**
  * Adds two numbers
  * @param  {*} u     A number or complex number-like object
  * @param  {*} v     A number or complex number-like object
  * @return {Complex} The sum of u and v
  */
+exports.imaginary = imaginary;
 var add = function add(u, v) {
-  return new _Complex2['default'](real(u).real + real(v).real, imaginary(u).real + imaginary(v).real);
+  return new _complexJs2['default'](real(u).real + real(v).real, imaginary(u).real + imaginary(v).real);
 };
 
-exports.add = add;
 /**
  * Subtracts two numbers
  * @param  {*} u     A number or complex number-like object
  * @param  {*} v     A number or complex number-like object
  * @return {Complex} The result of u subtracting v
  */
+exports.add = add;
 var subtract = function subtract(u, v) {
-  return new _Complex2['default'](real(u).real - real(v).real, imaginary(u).real - imaginary(v).real);
+  return new _complexJs2['default'](real(u).real - real(v).real, imaginary(u).real - imaginary(v).real);
 };
 
-exports.subtract = subtract;
 /**
  * Multiplies two numbers
  * @param  {*} u     A number or complex number-like object
  * @param  {*} v     A number or complex number-like object
  * @return {Complex} The product of u and v
  */
+exports.subtract = subtract;
 var multiply = function multiply(u, v) {
   var complexU = toComplex(u);
   var complexV = toComplex(v);
 
-  return new _Complex2['default'](complexU.real * complexV.real - complexU.imaginary * complexV.imaginary, complexU.real * complexV.imaginary + complexU.imaginary * complexV.real);
+  return new _complexJs2['default'](complexU.real * complexV.real - complexU.imaginary * complexV.imaginary, complexU.real * complexV.imaginary + complexU.imaginary * complexV.real);
 };
 
-exports.multiply = multiply;
 /**
  * Negates a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The negation of u
  */
+exports.multiply = multiply;
 var negate = function negate(u) {
   var complexU = toComplex(u);
-  return new _Complex2['default'](-complexU.real, -complexU.imaginary);
+  return new _complexJs2['default'](-complexU.real, -complexU.imaginary);
 };
 
-exports.negate = negate;
 /**
  * The argument or phase of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The argument of u
  */
+exports.negate = negate;
 var arg = function arg(u) {
-  return new _Complex2['default'](Math.atan2(imaginary(u).real, real(u).real));
+  return new _complexJs2['default'](Math.atan2(imaginary(u).real, real(u).real));
 };
 
-exports.arg = arg;
 /**
  * The smallest Gaussian Integer less than or equal to a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The ceiling of u
  */
+exports.arg = arg;
 var ceil = function ceil(u) {
-  return new _Complex2['default'](Math.ceil(real(u).real), Math.ceil(imaginary(u).real));
+  return new _complexJs2['default'](Math.ceil(real(u).real), Math.ceil(imaginary(u).real));
 };
 
-exports.ceil = ceil;
 /**
  * The complex conjugate of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The conjugate of u
  */
+exports.ceil = ceil;
 var conj = function conj(u) {
-  return new _Complex2['default'](real(u).real, -imaginary(u).real);
+  return new _complexJs2['default'](real(u).real, -imaginary(u).real);
 };
 
-exports.conj = conj;
 /**
  * Eular's constant raised to the power of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} Euler's constant raised to the power of u
  */
+exports.conj = conj;
 var exp = function exp(u) {
   var complexU = toComplex(u);
   var newAbs = Math.exp(complexU.real);
   var newArg = complexU.imaginary;
-  return new _Complex2['default'](newAbs * Math.cos(newArg), newAbs * Math.sin(newArg));
+  return new _complexJs2['default'](newAbs * Math.cos(newArg), newAbs * Math.sin(newArg));
 };
 
-exports.exp = exp;
 /**
  * The cosine of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The cosine of u
  */
+exports.exp = exp;
 var cos = function cos(u) {
   var iu = multiply(I, u);
   return divide(add(exp(iu), exp(negate(iu))), 2);
 };
 
-exports.cos = cos;
 /**
  * The hyperbolic cosine of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The hyperbolic cosine of u
  */
+exports.cos = cos;
 var cosh = function cosh(u) {
   return divide(add(exp(u), exp(negate(u))), 2);
 };
 
-exports.cosh = cosh;
 /**
  * The largest Gaussian Integer less than or equal to a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The floor of u
  */
+exports.cosh = cosh;
 var floor = function floor(u) {
-  return new _Complex2['default'](Math.floor(real(u).real), Math.floor(imaginary(u).real));
+  return new _complexJs2['default'](Math.floor(real(u).real), Math.floor(imaginary(u).real));
 };
 
-exports.floor = floor;
 /**
  * The fractional part of a real number
  * @param  {Number} n The number
  * @return {Number}   The fractional part of the number
  */
+exports.floor = floor;
 var realFrac = function realFrac(n) {
   return n >= 0 ? n - Math.floor(n) : n - Math.ceil(n);
 };
@@ -256,76 +257,75 @@ var realFrac = function realFrac(n) {
  */
 var frac = function frac(u) {
   var complexU = toComplex(u);
-  return new _Complex2['default'](realFrac(complexU.real), realFrac(complexU.imaginary));
+  return new _complexJs2['default'](realFrac(complexU.real), realFrac(complexU.imaginary));
 };
 
-exports.frac = frac;
 /**
  * The natural log (logarithm base e) of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The natural log of u
  */
+exports.frac = frac;
 var ln = function ln(u) {
-  return new _Complex2['default'](Math.log(abs(u).real), arg(u).real);
+  return new _complexJs2['default'](Math.log(abs(u).real), arg(u).real);
 };
 
-exports.ln = ln;
 /**
  * The nearest Gaussian Integer to a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The nearest Gaussian Integer to u
  */
+exports.ln = ln;
 var nint = function nint(u) {
-  return floor(add(u, new _Complex2['default'](0.5, 0.5)));
+  return floor(add(u, new _complexJs2['default'](0.5, 0.5)));
 };
 
-exports.nint = nint;
 /**
  * The norm of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The norm of u
  */
+exports.nint = nint;
 var norm = function norm(u) {
-  return new _Complex2['default'](real(u).real * real(u).real + imaginary(u).real * imaginary(u).real);
+  return new _complexJs2['default'](real(u).real * real(u).real + imaginary(u).real * imaginary(u).real);
 };
 
-exports.norm = norm;
 /**
  * The absolute value, or magnitude, of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The absolute value of u
  */
+exports.norm = norm;
 var abs = function abs(u) {
-  return new _Complex2['default'](Math.sqrt(norm(u).real));
+  return new _complexJs2['default'](Math.sqrt(norm(u).real));
 };
 
-exports.abs = abs;
 /**
  * Divides two numbers
  * @param  {*} u     A number or complex number-like object
  * @param  {*} v     A number or complex number-like object
  * @return {Complex} The result of dividing u by v
  */
+exports.abs = abs;
 var divide = function divide(u, v) {
   var complexU = toComplex(u);
   var complexV = toComplex(v);
   var normV = norm(v).real;
 
-  return new _Complex2['default']((complexU.real * complexV.real + complexU.imaginary * complexV.imaginary) / normV, (complexU.imaginary * complexV.real - complexU.real * complexV.imaginary) / normV);
+  return new _complexJs2['default']((complexU.real * complexV.real + complexU.imaginary * complexV.imaginary) / normV, (complexU.imaginary * complexV.real - complexU.real * complexV.imaginary) / normV);
 };
 
-exports.divide = divide;
 /**
  * The complex modulus of a number
  * @param  {*} u     A number or complex number-like object
  * @param  {*} v     A number or complex number-like object
  * @return {Complex} The result of u mod v
  */
+exports.divide = divide;
 var mod = function mod(u, v) {
   return subtract(u, multiply(v, floor(divide(u, v))));
 };
 
-exports.mod = mod;
 /**
  * The logarithm of a number to a given base
  * @param  {*} base  A number or complex number-like object that is the base of
@@ -333,31 +333,31 @@ exports.mod = mod;
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The logarithm base base of u
  */
+exports.mod = mod;
 var log = function log(base, u) {
   return divide(ln(u), ln(base));
 };
 
-exports.log = log;
 /**
  * The logarithm base 2 of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The logarithm base 2 of u
  */
+exports.log = log;
 var log2 = function log2(u) {
   return divide(ln(u), Math.LN2);
 };
 
-exports.log2 = log2;
 /**
  * The logarithm base 10 of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The logarithm base 10 of u
  */
+exports.log2 = log2;
 var log10 = function log10(u) {
   return divide(ln(u), Math.LN10);
 };
 
-exports.log10 = log10;
 /**
  * The exponent of a base raised to a power
  * @param  {*} base  A number or complex number-like object that is the base of
@@ -366,246 +366,247 @@ exports.log10 = log10;
  * the exponent
  * @return {Complex} The exponent of base raised to power
  */
+exports.log10 = log10;
 var pow = function pow(base, power) {
   return exp(multiply(power, ln(base)));
 };
 
-exports.pow = pow;
 /**
  * The secant of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The secant of u
  */
+exports.pow = pow;
 var sec = function sec(u) {
   return divide(1, cos(u));
 };
 
-exports.sec = sec;
 /**
  * The hyperbolic secant of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The hyperbolic secant of u
  */
+exports.sec = sec;
 var sech = function sech(u) {
   return divide(1, cosh(u));
 };
 
-exports.sech = sech;
 /**
  * The sine of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The sine of u
  */
+exports.sech = sech;
 var sin = function sin(u) {
   var iu = multiply(I, u);
-  return divide(subtract(exp(iu), exp(negate(iu))), new _Complex2['default'](0, 2));
+  return divide(subtract(exp(iu), exp(negate(iu))), new _complexJs2['default'](0, 2));
 };
 
-exports.sin = sin;
 /**
  * The hyperbolic sine of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The hyperbolic sine of u
  */
+exports.sin = sin;
 var sinh = function sinh(u) {
   return divide(subtract(exp(u), exp(negate(u))), 2);
 };
 
-exports.sinh = sinh;
 /**
  * The cosecant of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The cosecant of u
  */
+exports.sinh = sinh;
 var csc = function csc(u) {
   return divide(1, sin(u));
 };
 
-exports.csc = csc;
 /**
  * The hyperbolic cosecant of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The hyperbolic cosecant of u
  */
+exports.csc = csc;
 var csch = function csch(u) {
   return divide(1, sinh(u));
 };
 
-exports.csch = csch;
 /**
  * The square root of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The square root of u
  */
+exports.csch = csch;
 var sqrt = function sqrt(u) {
   var complexU = toComplex(u);
   var absU = abs(u).real;
 
-  return new _Complex2['default'](Math.sqrt((complexU.real + absU) / 2), Math.sign(complexU.imaginary) * Math.sqrt((-complexU.real + absU) / 2));
+  return new _complexJs2['default'](Math.sqrt((complexU.real + absU) / 2), Math.sign(complexU.imaginary) * Math.sqrt((-complexU.real + absU) / 2));
 };
 
-exports.sqrt = sqrt;
 /**
  * The tangent of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The tangent of u
  */
+exports.sqrt = sqrt;
 var tan = function tan(u) {
-  var exp_2iu = exp(multiply(new _Complex2['default'](0, 2), u));
+  var exp_2iu = exp(multiply(new _complexJs2['default'](0, 2), u));
   return divide(subtract(exp_2iu, 1), multiply(I, add(exp_2iu, 1)));
 };
 
-exports.tan = tan;
 /**
  * The hyperbolic tangent of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The hyperbolic tangent of u
  */
+exports.tan = tan;
 var tanh = function tanh(u) {
   var exp_u = exp(u);
   var exp_negate_u = exp(negate(u));
   return divide(subtract(exp_u, exp_negate_u), add(exp_u, exp_negate_u));
 };
 
-exports.tanh = tanh;
 /**
  * The cotangent of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The cotangent of u
  */
+exports.tanh = tanh;
 var cot = function cot(u) {
   return divide(1, tan(u));
 };
 
-exports.cot = cot;
 /**
  * The hyperbolic cotangent of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The hyperbolic cotangent of u
  */
+exports.cot = cot;
 var coth = function coth(u) {
   return divide(1, tanh(u));
 };
 
-exports.coth = coth;
 /**
  * The inverse cosine of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse cosine of u
  */
+exports.coth = coth;
 var acos = function acos(u) {
   return add(Math.PI / 2, multiply(I, ln(add(multiply(I, u), sqrt(subtract(1, multiply(u, u)))))));
 };
 
-exports.acos = acos;
 /**
  * The inverse hyperbolic cosine of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse hyperbolic cosine of u
  */
+exports.acos = acos;
 var acosh = function acosh(u) {
   return ln(add(u, multiply(sqrt(add(u, 1)), sqrt(subtract(u, 1)))));
 };
 
-exports.acosh = acosh;
 /**
  * The inverse cotangent of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse cotangent of u
  */
+exports.acosh = acosh;
 var acot = function acot(u) {
   return multiply(divide(I, 2), subtract(ln(divide(subtract(u, I), u)), ln(divide(add(u, I), u))));
 };
 
-exports.acot = acot;
 /**
  * The inverse hyperbolic cotangent of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse hyperbolic cotangent of u
  */
+exports.acot = acot;
 var acoth = function acoth(u) {
   var reciprocal = divide(1, u);
   return divide(subtract(ln(add(1, reciprocal)), ln(subtract(1, reciprocal))), 2);
 };
 
-exports.acoth = acoth;
 /**
  * The inverse cosecant of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse cosecant of u
  */
+exports.acoth = acoth;
 var acsc = function acsc(u) {
-  return multiply(new _Complex2['default'](0, -1), ln(add(sqrt(subtract(1, divide(1, multiply(u, u)))), divide(I, u))));
+  return multiply(new _complexJs2['default'](0, -1), ln(add(sqrt(subtract(1, divide(1, multiply(u, u)))), divide(I, u))));
 };
 
-exports.acsc = acsc;
 /**
  * The inverse hyperbolic cosecant of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse hyperbolic cosecant of u
  */
+exports.acsc = acsc;
 var acsch = function acsch(u) {
-  return add(new _Complex2['default'](0, -Math.PI / 2), multiply(I, acos(divide(I, u))));
+  return add(new _complexJs2['default'](0, -Math.PI / 2), multiply(I, acos(divide(I, u))));
 };
 
-exports.acsch = acsch;
 /**
  * The inverse secant of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse secant of u
  */
+exports.acsch = acsch;
 var asec = function asec(u) {
-  return add(new _Complex2['default'](Math.PI / 2), multiply(I, ln(add(sqrt(subtract(1, divide(1, multiply(u, u)))), divide(I, u)))));
+  return add(new _complexJs2['default'](Math.PI / 2), multiply(I, ln(add(sqrt(subtract(1, divide(1, multiply(u, u)))), divide(I, u)))));
 };
 
-exports.asec = asec;
 /**
  * The inverse hyperbolic secant of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse hyperbolic secant of u
  */
+exports.asec = asec;
 var asech = function asech(u) {
   var reciprocal = divide(1, u);
   return ln(add(multiply(sqrt(subtract(reciprocal, 1)), sqrt(add(reciprocal, 1))), reciprocal));
 };
 
-exports.asech = asech;
 /**
  * The inverse sine of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse sine of u
  */
+exports.asech = asech;
 var asin = function asin(u) {
-  return multiply(new _Complex2['default'](0, -1), ln(add(multiply(I, u), sqrt(subtract(1, multiply(u, u))))));
+  return multiply(new _complexJs2['default'](0, -1), ln(add(multiply(I, u), sqrt(subtract(1, multiply(u, u))))));
 };
 
-exports.asin = asin;
 /**
  * The inverse hyperbolic sine of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse hyperbolic sine of u
  */
+exports.asin = asin;
 var asinh = function asinh(u) {
   return ln(add(u, sqrt(add(multiply(u, u), 1))));
 };
 
-exports.asinh = asinh;
 /**
  * The inverse tangent of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse tangent of u
  */
+exports.asinh = asinh;
 var atan = function atan(u) {
   var iu = multiply(I, u);
   return multiply(divide(I, 2), subtract(ln(subtract(1, iu)), ln(add(1, iu))));
 };
 
-exports.atan = atan;
 /**
  * The inverse hyperbolic tangent of a number
  * @param  {*} u     A number or complex number-like object
  * @return {Complex} The inverse hyperbolic tangent of u
  */
+exports.atan = atan;
 var atanh = function atanh(u) {
   return divide(subtract(ln(add(1, u)), ln(subtract(1, u))), 2);
 };
@@ -619,78 +620,76 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/**
- * @overview Describes a complex number
- * @author Colin Jeanne <colinjeanne@hotmail.com> (http://www.colinjeanne.net)
- */
+var _default = /**
+                * @overview Describes a complex number
+                * @author Colin Jeanne <colinjeanne@hotmail.com> (http://www.colinjeanne.net)
+                */
 
 /**
  * A complex number
  */
 
-var _default = (function () {
-  var _class =
-  /**
-   * Constructs a complex number from real and imaginary parts
-   * @param  {Number=0} real      The real part of the complex number
-   * @param  {Number=0} imaginary The imaginary part of the complex number
-   * @return {Complex}
-   */
-  function _default() {
-    var real = arguments[0] === undefined ? 0 : arguments[0];
-    var imaginary = arguments[1] === undefined ? 0 : arguments[1];
+/**
+ * Constructs a complex number from real and imaginary parts
+ * @param  {Number=0} real      The real part of the complex number
+ * @param  {Number=0} imaginary The imaginary part of the complex number
+ * @return {Complex}
+ */
+function _default() {
+  var real = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+  var imaginary = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
 
-    _classCallCheck(this, _class);
+  _classCallCheck(this, _default);
 
-    this.real = real;
-    this.imaginary = imaginary;
-  };
-
-  return _class;
-})();
+  this.real = real;
+  this.imaginary = imaginary;
+};
 
 exports["default"] = _default;
 module.exports = exports["default"];
 },{}],"expression":[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-   value: true
-});
-
-var _KnownUnaryFunctions;
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _defineProperty(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
 /**
  * @overview Describes an expression parser and evaluator over the complex
  * numbers
  * @author Colin Jeanne <colinjeanne@hotmail.com> (http://www.colinjeanne.net)
  */
 
-var _Complex = require('./complex.js');
+'use strict';
 
-var _Complex2 = _interopRequireDefault(_Complex);
+Object.defineProperty(exports, '__esModule', {
+   value: true
+});
 
-var _import = require('./complex-math.js');
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var ComplexMath = _interopRequireWildcard(_import);
+var _KnownUnaryFunctions;
+
+var _get = function get(_x4, _x5, _x6) { var _again = true; _function: while (_again) { var object = _x4, property = _x5, receiver = _x6; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x4 = parent; _x5 = property; _x6 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var _complexJs = require('./complex.js');
+
+var _complexJs2 = _interopRequireDefault(_complexJs);
+
+var _complexMathJs = require('./complex-math.js');
 
 /**
  * Enumeration for known characters
  * @readonly
  * @enum string
  */
+
+var ComplexMath = _interopRequireWildcard(_complexMathJs);
+
 var KnownCharacters = {
    openParenthesis: '(',
    closeParenthesis: ')',
@@ -793,7 +792,11 @@ var isTokenScopeEnding = function isTokenScopeEnding(tokenType) {
  * be an unary function
  */
 var isTokenUnaryForcing = function isTokenUnaryForcing(tokenType) {
-   return tokenType === TokenType.openParenthesis || tokenType === TokenType.comma || tokenType === TokenType.plus || tokenType === TokenType.minus || tokenType === TokenType.times || tokenType === TokenType.divide;
+   return tokenType === TokenType.openParenthesis || tokenType === TokenType.comma ||
+
+   // Plus and minus are unary operators at the start of a subexpression or
+   // after an infix operator
+   tokenType === TokenType.plus || tokenType === TokenType.minus || tokenType === TokenType.times || tokenType === TokenType.divide;
 };
 
 /**
@@ -822,7 +825,7 @@ function Token(tokenType, terminal) {
 
    this.tokenType = tokenType;
    this.terminal = terminal;
-};
+}
 
 /**
  * Determines if the left token is of lower or equal precedence to the right
@@ -832,11 +835,27 @@ function Token(tokenType, terminal) {
  * @return {boolean}              Whether the left token is of lower or equal
  * precedence to the right token
  */
+;
+
 var isLeftTokenLowerOrEqualPrecedence = function isLeftTokenLowerOrEqualPrecedence(leftToken, rightToken) {
    return (
       // Invisible Times has the highest precedence of the operators since it is
       // elided in order to imply a strong coupling between terms
-      rightToken === TokenType.invisibleTimes || !isTokenOperator(leftToken) && !isTokenOperator(rightToken) || isTokenOperator(leftToken) && leftToken !== TokenType.invisibleTimes && !isTokenOperator(rightToken) || (rightToken === TokenType.times || rightToken === TokenType.divide) || (leftToken === TokenType.plus || leftToken === TokenType.minus)
+      rightToken === TokenType.invisibleTimes ||
+
+      // Non-operators all have the same precedence
+      !isTokenOperator(leftToken) && !isTokenOperator(rightToken) ||
+
+      // Operators, except for invisible times, have lower precedence than
+      // non-operators
+      isTokenOperator(leftToken) && leftToken !== TokenType.invisibleTimes && !isTokenOperator(rightToken) || (
+
+      // Times and divide have the second highest precedence amongst operators
+      rightToken === TokenType.times || rightToken === TokenType.divide) || (
+
+      // The right token must be plus or minus so verify that the left token is
+      // also plus or minus
+      leftToken === TokenType.plus || leftToken === TokenType.minus)
    );
 };
 
@@ -858,18 +877,23 @@ var operatorToBinaryFunction = function operatorToBinaryFunction(token) {
  */
 
 var ExpressionSyntaxError = (function (_Error) {
-   function ExpressionSyntaxError() {
-      _classCallCheck(this, ExpressionSyntaxError);
-
-      if (_Error != null) {
-         _Error.apply(this, arguments);
-      }
-   }
-
    _inherits(ExpressionSyntaxError, _Error);
 
+   /**
+    * Constructs an ExpressionSyntaxError
+    * @param  {string}                message The exception message
+    * @return {ExpressionSyntaxError}
+    */
+
+   function ExpressionSyntaxError(message) {
+      _classCallCheck(this, ExpressionSyntaxError);
+
+      _get(Object.getPrototypeOf(ExpressionSyntaxError.prototype), 'constructor', this).call(this, message);
+      this.message = message;
+   }
+
    return ExpressionSyntaxError;
-})(Error);
+})(Error)
 
 /**
  * Coverts an expression from infix notation to reverse polish notation using
@@ -877,6 +901,8 @@ var ExpressionSyntaxError = (function (_Error) {
  * @param  {Token[]} tokens An array of tokens in infix-notation
  * @return {Token[]}        An array of tokens in reverse polish notation
  */
+;
+
 var convertToReversePolishNotation = function convertToReversePolishNotation(tokens) {
    // The current stack of operators. This uses shift/unshift so that the first
    // element is the top of the stack.
@@ -1016,7 +1042,7 @@ var numberFromTerminal = function numberFromTerminal(terminal) {
       return KnownConstants[terminal];
    }
 
-   return new _Complex2['default'](Number.parseFloat(terminal));
+   return new _complexJs2['default'](Number.parseFloat(terminal));
 };
 
 /**
@@ -1050,7 +1076,8 @@ var KnownUnaryFunctions = (_KnownUnaryFunctions = {
    exp: ComplexMath.exp,
    floor: ComplexMath.floor,
    frac: ComplexMath.frac,
-   imag: ComplexMath.imag }, _defineProperty(_KnownUnaryFunctions, KnownConstants.blackLetterCapitalI, ComplexMath.imag), _defineProperty(_KnownUnaryFunctions, 'log10', ComplexMath.log10), _defineProperty(_KnownUnaryFunctions, 'lg', ComplexMath.log2), _defineProperty(_KnownUnaryFunctions, 'ln', ComplexMath.ln), _defineProperty(_KnownUnaryFunctions, '-', ComplexMath.negate), _defineProperty(_KnownUnaryFunctions, 'nint', ComplexMath.nint), _defineProperty(_KnownUnaryFunctions, 'norm', ComplexMath.norm), _defineProperty(_KnownUnaryFunctions, 'real', ComplexMath.real), _defineProperty(_KnownUnaryFunctions, KnownConstants.blackLetterCapitalR, ComplexMath.real), _defineProperty(_KnownUnaryFunctions, 'sec', ComplexMath.sec), _defineProperty(_KnownUnaryFunctions, 'sech', ComplexMath.sech), _defineProperty(_KnownUnaryFunctions, 'sin', ComplexMath.sin), _defineProperty(_KnownUnaryFunctions, 'sinh', ComplexMath.sinh), _defineProperty(_KnownUnaryFunctions, 'sqrt', ComplexMath.sqrt), _defineProperty(_KnownUnaryFunctions, 'tan', ComplexMath.tan), _defineProperty(_KnownUnaryFunctions, 'tanh', ComplexMath.tanh), _KnownUnaryFunctions);
+   imag: ComplexMath.imag
+}, _defineProperty(_KnownUnaryFunctions, KnownConstants.blackLetterCapitalI, ComplexMath.imag), _defineProperty(_KnownUnaryFunctions, 'log10', ComplexMath.log10), _defineProperty(_KnownUnaryFunctions, 'lg', ComplexMath.log2), _defineProperty(_KnownUnaryFunctions, 'ln', ComplexMath.ln), _defineProperty(_KnownUnaryFunctions, '-', ComplexMath.negate), _defineProperty(_KnownUnaryFunctions, 'nint', ComplexMath.nint), _defineProperty(_KnownUnaryFunctions, 'norm', ComplexMath.norm), _defineProperty(_KnownUnaryFunctions, 'real', ComplexMath.real), _defineProperty(_KnownUnaryFunctions, KnownConstants.blackLetterCapitalR, ComplexMath.real), _defineProperty(_KnownUnaryFunctions, 'sec', ComplexMath.sec), _defineProperty(_KnownUnaryFunctions, 'sech', ComplexMath.sech), _defineProperty(_KnownUnaryFunctions, 'sin', ComplexMath.sin), _defineProperty(_KnownUnaryFunctions, 'sinh', ComplexMath.sinh), _defineProperty(_KnownUnaryFunctions, 'sqrt', ComplexMath.sqrt), _defineProperty(_KnownUnaryFunctions, 'tan', ComplexMath.tan), _defineProperty(_KnownUnaryFunctions, 'tanh', ComplexMath.tanh), _KnownUnaryFunctions);
 
 /**
  * Whether a terminal is a known unary function
@@ -1142,7 +1169,7 @@ var processHiddenElements = function processHiddenElements(tokens) {
 
          case TokenType.comma:
             if (processedTokens.length === 0 || processedTokens[processedTokens.length - 1].tokenType === TokenType.openParenthesis || !isLastToken && tokens[nextIndex].tokenType === TokenType.closeParenthesis) {
-               throw new ExpressionSyntaxError('Misplaced comma');
+               throw new ExpressionSyntaxError("Misplaced comma");
             }
 
             processedTokens.push(token);
@@ -1218,7 +1245,7 @@ var isSpaceCharacter = function isSpaceCharacter(c) {
  * @return {boolean}  Whether the character is a high surrogate
  */
 var isHighSurrogateCharacter = function isHighSurrogateCharacter(c) {
-   return c.charCodeAt(0) >= 55296 && c.charCodeAt(0) <= 56319;
+   return c.charCodeAt(0) >= 0xD800 && c.charCodeAt(0) <= 0xDBFF;
 };
 
 /**
@@ -1227,7 +1254,7 @@ var isHighSurrogateCharacter = function isHighSurrogateCharacter(c) {
  * @return {boolean}  Whether the character is a low surrogate
  */
 var isLowSurrogateCharacter = function isLowSurrogateCharacter(c) {
-   return c.charCodeAt(0) >= 56320 && c.charCodeAt(0) <= 57343;
+   return c.charCodeAt(0) >= 0xDC00 && c.charCodeAt(0) <= 0xDFFF;
 };
 
 /**
@@ -1375,149 +1402,98 @@ var NumberPhrase = (function () {
       this.value = value;
    }
 
+   /**
+    * Evaluates the phrase
+    * @return {number|Complex} The value of the phrase
+    */
+
    _createClass(NumberPhrase, [{
-      key: 'hasUnsetVariables',
-
-      /**
-       * Determines if the phrase has any unset variables
-       * @return {boolean} Whether the phrase has any unset variables
-       */
-      value: function hasUnsetVariables() {
-         return false;
-      }
-   }, {
-      key: 'hasVariable',
-
-      /**
-       * Determines if the phrase has a specific variable
-       * @return {boolean} Whether the phrase has a specific variable
-       */
-      value: function hasVariable() {
-         return false;
-      }
-   }, {
-      key: 'setVariable',
-
-      /**
-       * Sets the value of a variable in the phrase
-       */
-      value: function setVariable() {}
-   }, {
       key: 'evaluate',
-
-      /**
-       * Evaluates the phrase
-       * @return {number|Complex} The value of the phrase
-       */
       value: function evaluate() {
          return this.value;
       }
    }]);
 
    return NumberPhrase;
-})();
+})()
 
 /**
  * An error raised when the expression is syntactically valid but cannot be
  * evaluated
  */
+;
 
 var ExpressionEvaluationError = (function (_Error2) {
-   function ExpressionEvaluationError() {
-      _classCallCheck(this, ExpressionEvaluationError);
-
-      if (_Error2 != null) {
-         _Error2.apply(this, arguments);
-      }
-   }
-
    _inherits(ExpressionEvaluationError, _Error2);
 
+   /**
+    * Constructs an ExpressionEvaluationError
+    * @param  {string}                    message The exception message
+    * @return {ExpressionEvaluationError}
+    */
+
+   function ExpressionEvaluationError(message) {
+      _classCallCheck(this, ExpressionEvaluationError);
+
+      _get(Object.getPrototypeOf(ExpressionEvaluationError.prototype), 'constructor', this).call(this, message);
+      this.message = message;
+   }
+
    return ExpressionEvaluationError;
-})(Error);
+})(Error)
 
 /**
  * A phrase representing a variable
  */
+;
 
 var VariablePhrase = (function () {
    /**
     * Constructs a VariablePhrase from a symbol
     * @param  {string}         symbol The symbol of the variable
-    * @param  {number|Complex} value  The value of the symbol
     * @return {VariablePhrase}
     */
 
-   function VariablePhrase(symbol, value) {
+   function VariablePhrase(symbol) {
       _classCallCheck(this, VariablePhrase);
 
       this.symbol = symbol;
-      this.value = value;
    }
 
+   /**
+    * Evaluates the phrase
+    * @param  {Object.<string, number|Complex>=} symbols A dictionary of
+    * symbols and their values
+    * @return {number|Complex} The value of the phrase
+    */
+
    _createClass(VariablePhrase, [{
-      key: 'hasUnsetVariables',
-
-      /**
-       * Determines if the phrase has any unset variables
-       * @return {boolean} Whether the phrase has any unset variables
-       */
-      value: function hasUnsetVariables() {
-         return this.value === undefined;
-      }
-   }, {
-      key: 'hasVariable',
-
-      /**
-       * Determines if the phrase has a specific variable
-       * @param  {string}  symbol The symbol of the variable
-       * @return {boolean}        Whether the phrase has a specific variable
-       */
-      value: function hasVariable(symbol) {
-         return this.symbol === symbol;
-      }
-   }, {
-      key: 'setVariable',
-
-      /**
-       * Sets the value of a variable in the phrase
-       * @param  {string}         symbol The symbol of the variable
-       * @param  {number|Complex} value  The value of the symbol
-       */
-      value: function setVariable(symbol, value) {
-         if (this.hasVariable(symbol)) {
-            this.value = value;
-         }
-      }
-   }, {
       key: 'evaluate',
-
-      /**
-       * Evaluates the phrase
-       * @return {number|Complex} The value of the phrase
-       */
       value: function evaluate() {
-         if (this.hasUnsetVariables()) {
+         var symbols = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+         if (!symbols.hasOwnProperty(this.symbol)) {
             throw new ExpressionEvaluationError('Variable ' + this.symbol + ' does not have a defined value');
          }
 
-         return this.value;
+         return symbols[this.symbol];
       }
    }]);
 
    return VariablePhrase;
-})();
+})()
 
 /**
  * A phrase representing a function
  */
+;
 
 var FunctionPhrase = (function () {
    /**
     * Constructs a FunctionPhrase from a function
-    * @param  {callback}                                     evalFunction The
+    * @param  {callback}                                         evalFunction The
     * function used to evaluate this phrase
-    * @param  {NumberPhrase|VariablePhrase|FunctionPhrase[]} children The child
+    * @param  {NumberPhrase[]|VariablePhrase[]|FunctionPhrase[]} children The child
     * phrases of this phrase
     * @return {FunctionPhrase}
     */
@@ -1533,60 +1509,26 @@ var FunctionPhrase = (function () {
       this.children = children;
    }
 
+   /**
+    * Evaluates the phrase
+    * @param  {Object.<string, number|Complex>=} symbols A dictionary of
+    * symbols and their values
+    * @return {number|Complex} The value of the phrase
+    */
+
    _createClass(FunctionPhrase, [{
-      key: 'hasUnsetVariables',
-
-      /**
-       * Determines if the phrase has any unset variables
-       * @return {boolean} Whether the phrase has any unset variables
-       */
-      value: function hasUnsetVariables() {
-         return this.children.some(function (phrase) {
-            return pharse.hasUnsetVariables();
-         });
-      }
-   }, {
-      key: 'hasVariable',
-
-      /**
-       * Determines if the phrase has a specific variable
-       * @param  {string}  symbol The symbol of the variable
-       * @return {boolean}        Whether the phrase has a specific variable
-       */
-      value: function hasVariable(symbol) {
-         return this.children.some(function (phrase) {
-            return phrase.hasVariable(symbol);
-         });
-      }
-   }, {
-      key: 'setVariable',
-
-      /**
-       * Sets the value of a variable in the phrase
-       * @param  {string}         symbol The symbol of the variable
-       * @param  {number|Complex} value  The value of the symbol
-       */
-      value: function setVariable(symbol, value) {
-         this.children.forEach(function (phrase) {
-            return phrase.setVariable(symbol, value);
-         });
-      }
-   }, {
       key: 'evaluate',
-
-      /**
-       * Evaluates the phrase
-       * @return {number|Complex} The value of the phrase
-       */
       value: function evaluate() {
+         var symbols = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
          return this.evalFunction.apply(null, this.children.map(function (phrase) {
-            return phrase.evaluate();
+            return phrase.evaluate(symbols);
          }));
       }
    }]);
 
    return FunctionPhrase;
-})();
+})()
 
 /**
  * Builds a parse tree from a tokenized expression
@@ -1594,6 +1536,8 @@ var FunctionPhrase = (function () {
  * @return {NumberPhrase|VariablePhrase|FunctionPhrase} The root of the parse
  * tree
  */
+;
+
 var buildParseTree = function buildParseTree(tokens) {
    var stack = [];
 
@@ -1643,78 +1587,37 @@ var buildParseTree = function buildParseTree(tokens) {
  */
 
 var _default = (function () {
-   var _class =
    /**
     * Constructs an expression from a string
     * @param  {string} expression The expression string
     * @return {Expression}
     */
+
    function _default(expression) {
-      _classCallCheck(this, _class);
+      _classCallCheck(this, _default);
 
       this.phrase = buildParseTree(convertToReversePolishNotation(processHiddenElements(tokenize(expression))));
-   };
+   }
 
-   _createClass(_class, [{
-      key: 'hasUnsetVariables',
+   /**
+    * Evaluates the expression
+    * @param  {Object.<string, number|Complex>=} symbols A dictionary of
+    * symbols and their values
+    * @return {number|Complex} The value of the expression
+    */
 
-      /**
-       * Determines if the expression has any unset variables
-       * @return {boolean} Whether the expression has any unset variables
-       */
-      value: function hasUnsetVariables() {
-         return this.phrase.hasUnsetVariables();
-      }
-   }, {
-      key: 'hasVariable',
-
-      /**
-       * Determines if the expression has a specific variable
-       * @param  {string}  symbol The symbol of the variable
-       * @return {boolean}        Whether the expression has a specific variable
-       */
-      value: function hasVariable(symbol) {
-         return this.phrase.hasVariable(symbol);
-      }
-   }, {
-      key: 'setVariable',
-
-      /**
-       * Sets the value of a variable in the expression
-       * @param  {string}         symbol The symbol of the variable
-       * @param  {number|Complex} value  The value of the symbol
-       */
-      value: function setVariable(symbol, value) {
-         this.phrase.setVariable(symbol, value);
-      }
-   }, {
+   _createClass(_default, [{
       key: 'evaluate',
-
-      /**
-       * Evaluates the expression
-       * @return {number|Complex} The value of the expression
-       */
       value: function evaluate() {
-         return this.phrase.evaluate();
+         var symbols = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+         return this.phrase.evaluate(symbols);
       }
    }]);
 
-   return _class;
+   return _default;
 })();
 
 exports['default'] = _default;
 module.exports = exports['default'];
-
-// Plus and minus are unary operators at the start of a subexpression or
-// after an infix operator
-
-// Non-operators all have the same precedence
-
-// Operators, except for invisible times, have lower precedence than
-// non-operators
-
-// Times and divide have the second highest precedence amongst operators
-
-// The right token must be plus or minus so verify that the left token is
-// also plus or minus
 },{"./complex-math.js":"complex-math","./complex.js":"complex"}]},{},[]);

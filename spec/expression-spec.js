@@ -25,16 +25,13 @@ describe('Expression', () => {
 
    it('should parse symbols', () => {
       const simple = new Expression('h');
-      simple.setVariable('h', new Complex(2));
-      expect(simple.evaluate()).toEqual(new Complex(2));
+      expect(simple.evaluate({'h': new Complex(2)})).toEqual(new Complex(2));
 
       const longer = new Expression('hello');
-      longer.setVariable('hello', new Complex(3));
-      expect(longer.evaluate()).toEqual(new Complex(3));
+      expect(longer.evaluate({'hello': new Complex(3)})).toEqual(new Complex(3));
 
       const astral = new Expression('\uD83D\uDE80');
-      astral.setVariable('\uD83D\uDE80', new Complex(0, 1));
-      expect(astral.evaluate()).toEqual(new Complex(0, 1));
+      expect(astral.evaluate({'\uD83D\uDE80': new Complex(0, 1)})).toEqual(new Complex(0, 1));
    });
 
    it('should parse symbols with trailing numbers', () => {
@@ -273,46 +270,6 @@ describe('Expression', () => {
 
          expect(() => new Expression('\u230B 2.2]'))
             .toThrowError('Mismatched circumfix operator');
-      });
-   });
-
-   describe('hasUnsetVariables', () => {
-      it('should detect unset variables', () => {
-         const expression = new Expression('hello');
-         expect(expression.hasUnsetVariables()).toBe(true);
-
-         expression.setVariable('world', new Complex(1));
-         expect(expression.hasUnsetVariables()).toBe(true);
-      });
-
-      it('should detect set variables', () => {
-         const expression = new Expression('hello');
-         expression.setVariable('hello', new Complex(2));
-         expect(expression.hasUnsetVariables()).toBe(false);
-      });
-   });
-
-   describe('hasVariable', () => {
-      it('should detect existing variables', () => {
-         const expression = new Expression('2x');
-         expect(expression.hasVariable('x')).toBe(true);
-         expect(expression.hasVariable('y')).toBe(false);
-      });
-
-      it('should detect existing set variables', () => {
-         const expression = new Expression('2x');
-         expression.setVariable('x', new Complex(2));
-         expect(expression.hasVariable('x')).toBe(true);
-         expect(expression.hasVariable('y')).toBe(false);
-      });
-   });
-
-   describe('setVariable', () => {
-      it('should should set the value of existing variables', () => {
-         const expression = new Expression('2 - 3x');
-         expression.setVariable('x', new Complex(0, 2));
-
-         expect(expression.evaluate()).toEqual(new Complex(2, -6));
       });
    });
 

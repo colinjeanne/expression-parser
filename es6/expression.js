@@ -208,6 +208,15 @@ const operatorToBinaryFunction = token => {
  * An exception thrown when a syntactically-malformed expression is encountered
  */
 class ExpressionSyntaxError extends Error {
+   /**
+    * Constructs an ExpressionSyntaxError
+    * @param  {string}                message The exception message
+    * @return {ExpressionSyntaxError}
+    */
+   constructor(message) {
+      super(message);
+      this.message = message;
+   }
 }
 
 /**
@@ -362,7 +371,7 @@ const numberFromTerminal = terminal => {
    }
 
    return new Complex(Number.parseFloat(terminal));
-}
+};
 
 /**
  * The known unary functions
@@ -434,7 +443,7 @@ const unaryFunctionFromTerminal = terminal => {
 
    throw new Error(
       'Assertion failed: attempting to create unknown unary function');
-}
+};
 
 /**
  * The known binary functions
@@ -471,7 +480,7 @@ const binaryFunctionFromTerminal = terminal => {
 
    throw new Error(
       'Assertion failed: attempting to create unknown binary function');
-}
+};
 
 /**
  * Processes a set of tokens to add implied elements such as invisible times or
@@ -744,28 +753,6 @@ class NumberPhrase {
    }
 
    /**
-    * Determines if the phrase has any unset variables
-    * @return {boolean} Whether the phrase has any unset variables
-    */
-   hasUnsetVariables() {
-      return false;
-   }
-
-   /**
-    * Determines if the phrase has a specific variable
-    * @return {boolean} Whether the phrase has a specific variable
-    */
-   hasVariable() {
-      return false;
-   }
-
-   /**
-    * Sets the value of a variable in the phrase
-    */
-   setVariable() {
-   }
-
-   /**
     * Evaluates the phrase
     * @return {number|Complex} The value of the phrase
     */
@@ -779,6 +766,15 @@ class NumberPhrase {
  * evaluated
  */
 class ExpressionEvaluationError extends Error {
+   /**
+    * Constructs an ExpressionEvaluationError
+    * @param  {string}                    message The exception message
+    * @return {ExpressionEvaluationError}
+    */
+   constructor(message) {
+      super(message);
+      this.message = message;
+   }
 }
 
 /**
@@ -788,53 +784,25 @@ class VariablePhrase {
    /**
     * Constructs a VariablePhrase from a symbol
     * @param  {string}         symbol The symbol of the variable
-    * @param  {number|Complex} value  The value of the symbol
     * @return {VariablePhrase}
     */
-   constructor(symbol, value) {
+   constructor(symbol) {
       this.symbol = symbol;
-      this.value = value;
-   }
-
-   /**
-    * Determines if the phrase has any unset variables
-    * @return {boolean} Whether the phrase has any unset variables
-    */
-   hasUnsetVariables() {
-      return this.value === undefined;
-   }
-
-   /**
-    * Determines if the phrase has a specific variable
-    * @param  {string}  symbol The symbol of the variable
-    * @return {boolean}        Whether the phrase has a specific variable
-    */
-   hasVariable(symbol) {
-      return this.symbol === symbol;
-   }
-
-   /**
-    * Sets the value of a variable in the phrase
-    * @param  {string}         symbol The symbol of the variable
-    * @param  {number|Complex} value  The value of the symbol
-    */
-   setVariable(symbol, value) {
-      if (this.hasVariable(symbol)) {
-         this.value = value;
-      }
    }
 
    /**
     * Evaluates the phrase
+    * @param  {Object.<string, number|Complex>=} symbols A dictionary of
+    * symbols and their values
     * @return {number|Complex} The value of the phrase
     */
-   evaluate() {
-      if (this.hasUnsetVariables()) {
+   evaluate(symbols = {}) {
+      if (!symbols.hasOwnProperty(this.symbol)) {
          throw new ExpressionEvaluationError(
             `Variable ${this.symbol} does not have a defined value`);
       }
 
-      return this.value;
+      return symbols[this.symbol];
    }
 }
 
@@ -844,9 +812,9 @@ class VariablePhrase {
 class FunctionPhrase {
    /**
     * Constructs a FunctionPhrase from a function
-    * @param  {callback}                                     evalFunction The
+    * @param  {callback}                                         evalFunction The
     * function used to evaluate this phrase
-    * @param  {NumberPhrase|VariablePhrase|FunctionPhrase[]} children The child
+    * @param  {NumberPhrase[]|VariablePhrase[]|FunctionPhrase[]} children The child
     * phrases of this phrase
     * @return {FunctionPhrase}
     */
@@ -860,39 +828,15 @@ class FunctionPhrase {
    }
 
    /**
-    * Determines if the phrase has any unset variables
-    * @return {boolean} Whether the phrase has any unset variables
-    */
-   hasUnsetVariables() {
-      return this.children.some(phrase => pharse.hasUnsetVariables());
-   }
-
-   /**
-    * Determines if the phrase has a specific variable
-    * @param  {string}  symbol The symbol of the variable
-    * @return {boolean}        Whether the phrase has a specific variable
-    */
-   hasVariable(symbol) {
-      return this.children.some(phrase => phrase.hasVariable(symbol));
-   }
-
-   /**
-    * Sets the value of a variable in the phrase
-    * @param  {string}         symbol The symbol of the variable
-    * @param  {number|Complex} value  The value of the symbol
-    */
-   setVariable(symbol, value) {
-      this.children.forEach(phrase => phrase.setVariable(symbol, value));
-   }
-
-   /**
     * Evaluates the phrase
+    * @param  {Object.<string, number|Complex>=} symbols A dictionary of
+    * symbols and their values
     * @return {number|Complex} The value of the phrase
     */
-   evaluate() {
+   evaluate(symbols = {}) {
       return this.evalFunction.apply(
          null,
-         this.children.map(phrase => phrase.evaluate()));
+         this.children.map(phrase => phrase.evaluate(symbols)));
    }
 }
 
@@ -971,36 +915,12 @@ export default class {
    }
 
    /**
-    * Determines if the expression has any unset variables
-    * @return {boolean} Whether the expression has any unset variables
-    */
-   hasUnsetVariables() {
-      return this.phrase.hasUnsetVariables();
-   }
-
-   /**
-    * Determines if the expression has a specific variable
-    * @param  {string}  symbol The symbol of the variable
-    * @return {boolean}        Whether the expression has a specific variable
-    */
-   hasVariable(symbol) {
-      return this.phrase.hasVariable(symbol);
-   }
-
-   /**
-    * Sets the value of a variable in the expression
-    * @param  {string}         symbol The symbol of the variable
-    * @param  {number|Complex} value  The value of the symbol
-    */
-   setVariable(symbol, value) {
-      this.phrase.setVariable(symbol, value);
-   }
-
-   /**
     * Evaluates the expression
+    * @param  {Object.<string, number|Complex>=} symbols A dictionary of
+    * symbols and their values
     * @return {number|Complex} The value of the expression
     */
-   evaluate() {
-      return this.phrase.evaluate();
+   evaluate(symbols = {}) {
+      return this.phrase.evaluate(symbols);
    }
 }

@@ -27,8 +27,7 @@ importing their respective files.
 
 ## Usage
 
-`Expression` has four methods: `hasUnsetVariables`, `hasVariable`,
-`setVariable`, and `evaluate`.
+`Expression` has a single method: `evaluate`.
 
 ### Construction
 
@@ -41,52 +40,17 @@ syntactically valid then the constructor throws an exception.
     // imaginary constant
     const expression = new Expression('2x * x + 3x - i');
 
-### hasUnsetVariables
-
-`hasUnsetVariables` takes no arguments and returns true if the expression has
-any unset variables.
-
-    const expression = new Expression('x');
-    console.log(expression.hasUnsetVariables()); // Outputs true
-
-    expression.setVariable('x', new Complex(0, -5));
-    console.log(expression.hasUnsetVariables()); // Outputs false
-
-### hasVariable
-
-`hasVariable` takes a single string, the variable's symbol, and returns true if
-the expression contains a variable with that symbol.
-
-   const expression = new Expression('x');
-   console.log(expression.hasVariable('x')); // Outputs true
-   console.log(expression.hasVariable('y')); // Outputs false
-
-### setVariable
-
-`setVariable` takes a string, the variable's symbol, and a `Complex`, the
-variable's new value. It sets the value of the variable in the expression.
-
-This method can be called again to change the value of the variable but once set
-a variable cannot be unset.
-
-    const expression = new Expression('x');
-    expression.setVariable('x', new Complex(2, 5));
-
-    let valueOfX = expression.evaluate(); // valueOfX is equal to 2 + 5i
-
-    expression.setVariable('x', new Complex(-3));
-    valueOfX = expression.evaluate(); // valueOfX is equal to -3
-
 ### evaluate
 
-`evaluate` takes no arguments and returns the value of the expression as a
-`Complex`. If the expression has any unset variables then this method throws an
-exception.
+`evaluate` takes a single, optional dictionary of symbols and their values and
+returns the value of the expression as a `Complex`. If the expression has any
+unset variables then this method throws an exception.
 
     const expression = new Expression('2x + i');
-    expression.setVariable('x', new Complex(3, 4));
 
-    const value = expression.evaluate(); // value is 6 + 9i
+    const valueA = expression.evaluate({'x': new Complex(2, 4)}); // valueA is 6 + 9i
+    const valueB = expression.evaluate({'x': 2}); // valueB is 4 + i
+    const noValue = expression.evaluate(); // throws exception
 
 ## Naming Symbols
 
