@@ -1,15 +1,16 @@
 {
   "name": "complex-expression-parser",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Parses and evaluates expressions over the complex numbers",
   "main": "es5/expression.js",
   "scripts": {
-    "prepare": "npm run build & npm test & npm run prepare-web",
+    "prepare": "npm run build & npm test & npm run browserify & npm run uglify",
     "test": "jasmine",
-    "prepare-web": "browserify -r ./build/src/expression.js:expression -r ./build/src/complex.js:complex -r ./build/src/complex-math.js:complex-math -o ./es5/expression.js",
+    "browserify": "browserify -r ./build/src/expression.js:expression -r ./build/src/complex.js:complex -r ./build/src/complex-math.js:complex-math -o ./es5/expression.js",
     "build-src": "babel ./es6 --out-dir ./build/src",
     "build-test": "babel ./spec --out-dir ./build/test",
-    "build": "npm run build-src & npm run build-test"
+    "build": "npm run build-src & npm run build-test",
+    "uglify": "uglifyjs ./es5/expression.js --screw-ie8 -c unused=false -o ./es5/expression.min.js"
   },
   "keywords": [
     "math",
@@ -28,8 +29,15 @@
     "url": "https://github.com/colinjeanne/expression-parser.git"
   },
   "devDependencies": {
-    "babel": "^5.2.6",
-    "browserify": "^11.0.0",
-    "jasmine": "^2.3.1"
+    "babel-cli": "^6.3.0",
+    "babel-preset-es2015": "^6.3.0",
+    "browserify": "^12.0.0",
+    "jasmine": "^2.4.0",
+    "uglify-js": "^2.6.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }

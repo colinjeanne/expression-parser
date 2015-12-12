@@ -7,12 +7,12 @@ of complex numbers.
 
 If you want to use it in a browser:
 
-* Just include es5/expression.js before your scripts.
+* Just include `es5/expression.js` or `es5/expression.min.js` before your scripts.
 * Include a shim such as [es6-shim](https://github.com/paulmillr/es6-shim/) if
 your target browser does not support common ES6 features such as extra methods
 on `Array` or `Number`.
 
-For `node.js`, `io.js`, or `npm` just run
+For `node.js` just run
 
     npm install complex-expression-parser
 
@@ -139,6 +139,10 @@ Example non-symbols:
 * `tan(x)`: The tangent of `x`
 * `tanh(x)`: The hyperbolic tangent of `x`
 
+#### Special
+* `gamma(x)`: The gamma of `x`
+* `Γ(x)`: The gamma of `x`
+
 ## Contributing
 
 Submit a pull request and mail <colinjeanne@hotmail.com>.
@@ -147,7 +151,7 @@ Development should occur against the ES6 files. Build and test using
 
     npm run prepare
 
-Please add appropriate tests and run `npm test` before submitting.
+All changes must include appropriate tests.
 
 ## License
 
